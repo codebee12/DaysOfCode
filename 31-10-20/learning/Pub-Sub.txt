@@ -1,0 +1,37 @@
+Reference: https://aws.amazon.com/pub-sub-messaging/#:~:text=Publish%2Fsubscribe%20messaging%2C%20or%20pub,the%20subscribers%20to%20the%20topic.
+
+In modern cloud architecture, applications are decoupled into smaller, independent building blocks that are easier to develop,
+ deploy and maintain. Publish/Subscribe (Pub/Sub) messaging provides instant event notifications for these distributed applications.  
+
+The Publish Subscribe model allows messages to be broadcast to different parts of a system asynchronously. 
+A sibling to a message queue, a message topic provides a lightweight mechanism to broadcast asynchronous event notifications, 
+and endpoints that allow software components to connect to the topic in order to send and receive those messages. 
+To broadcast a message, a component called a publisher simply pushes a message to the topic. Unlike message queues, 
+which batch messages until they are retrieved, message topics transfer messages with no or very little queuing, 
+and push them out immediately to all subscribers. All components that subscribe to the topic will receive every message 
+that is broadcast, unless a message filtering policy is set by the subscriber.
+
+The subscribers to the message topic often perform different functions, and can each do something different with the message in parallel.
+The publisher doesn’t need to know who is using the information that it is broadcasting, and the subscribers don’t need to know who the message comes from. This style of messaging is a 
+bit different than message queues, where the component that sends the message often knows the destination it is sending to.
+
+Below are definitions of some of the terminology commonly used in pub-sub offerings, which will provide APIs for doing all of this work, and an explanation of how the pieces work together.
+
+Topics
+Each message bus, the servers where messages are sent to, stored, and pulled from, can have one or more topics on it. 
+Topics are typically used to separate different types of messages from each other, since not all subscribers will need to see all 
+messages
+y usually only need to operate on a pre-defined subset of messages. If all subscribers saw every message, they would waste a lot of time 
+determining whether they needed to do anything with a given message, and just discarding a huge number without taking any action — 
+this would be a waste of resources!
+
+Publishing
+This also sometimes referred to as “producing.” A publisher is anything that puts messages onto the message bus.
+This can be a database trigger, a web request, an API call, running a script or chron job, whatever.
+Messages typically take a pre-defined format, and are in JSON. They are pushed to a specific topic.
+
+Subscribing
+This also sometimes referred to as “consuming.” Subscribers are typically responsible for a specific piece of behavior, and will subscribe to a specific topic. The beauty of pub-sub is that you can have as many subscribers as you want, which allows you to scale them all separately, depending on how long each message takes a given subscriber to process, and how much traffic is on the given topic to which they subscribe.
+Partitioning
+Topics can be further broken down into partitions. How you partition your data can be important, as ordering is not guaranteed across partitions. If the order in which messages are processed is important, all messages that need to be processed in order, will need to be on the same partition. For example, you may partition messages based on a user_id, if all messages for a given user need to be processed in order, but order doesn’t matter across different users.
+The number of partitions you choose can be an important early decision, since it’s difficult to change later (it would cause downtime and the possibility of losing ordering). You also cannot ever have more workers on a given subscriber than you have partitions, since messages on partitions are never divided (that would result in losing ordering).
