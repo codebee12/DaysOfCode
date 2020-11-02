@@ -1,5 +1,6 @@
 Refer:https://www.geeksforgeeks.org/plsql-introduction/
 Cursor: https://www.geeksforgeeks.org/cursors-in-pl-sql/
+Conditional Flow: https://www.geeksforgeeks.org/decision-making-plsql-else-nested-elsif-else/
 
 Disadvantages of SQL:
 
