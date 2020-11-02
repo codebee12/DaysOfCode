@@ -1,0 +1,49 @@
+The Common Table Expressions (CTE) were introduced into standard SQL in order to simplify various classes of SQL Queries 
+for which a derived table was just unsuitable.
+
+Using the CTE –
+We can define CTEs by adding a WITH clause directly before SELECT, INSERT, UPDATE, DELETE, or MERGE statement. The WITH clause can include one or more CTEs seperated by commas. The following syntax can be followed:
+
+[WITH  [, ...]]  
+ 
+::=
+cte_name [(column_name [, ...])]
+AS (cte_query) 
+After you define your WITH clause with the CTEs, you can then reference the CTEs as you would refer any other table. 
+However, you can refer a CTE only within the execution scope of the statement that immediately follows the WITH clause. 
+After you’ve run your statement, the CTE result set is not available to other statements.
+
+Creating a Recursive Common Table Expression –
+A recursive CTE is one that references itself within that CTE. The recursive CTE is useful when working with hierarchical data as the CTE continues to execute until the query returns the entire hierarchy.
+
+A typical example of hierarchical data is a table that includes a list of employees. 
+For every employee, the table provides a reference to that person’s manager. 
+That reference is itself an employee ID within the same table. You can use a recursive CTE to display the hierarchy of employee data.
+
+If a CTE is created incorrectly it can enter an infinite loop. 
+To prevent this, the MAXRECURSION hint can be added in the OPTION clause of the primary SELECT, INSERT, UPDATE, DELETE, or MERGE statement.
+
+After the Employees table is created, following SELECT statement, which is preceded by a WITH clause that includes a CTE named cteReports is created:
+
+WITH
+  cteReports (EmpID, FirstName, LastName, MgrID, EmpLevel)
+  AS
+  (
+    SELECT EmployeeID, FirstName, LastName, ManagerID, 1
+    FROM Employees
+    WHERE ManagerID IS NULL
+    UNION ALL
+    SELECT e.EmployeeID, e.FirstName, e.LastName, e.ManagerID, 
+      r.EmpLevel + 1
+    FROM Employees e
+      INNER JOIN cteReports r
+        ON e.ManagerID = r.EmpID
+  )
+SELECT
+  FirstName + ' ' + LastName AS FullName, 
+  EmpLevel,
+  (SELECT FirstName + ' ' + LastName FROM Employees 
+    WHERE EmployeeID = cteReports.MgrID) AS Manager
+FROM cteReports 
+ORDER BY EmpLevel, MgrID 
+Thus CTEs can be a useful tool when you need to generate temporary result sets that can be accessed in a SELECT, INSERT, UPDATE, DELETE, or MERGE statement.

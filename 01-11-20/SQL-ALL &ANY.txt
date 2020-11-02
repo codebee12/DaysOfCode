@@ -1,0 +1,49 @@
+ALL & ANY are logical operators in SQL. They return boolean value as a result.
+
+ALL
+
+ALL operator is used to select all tuples of SELECT STATEMENT. It is also used to compare a value to every value in another value set or result from a subquery.
+
+The ALL operator returns TRUE iff all of the subqueries values meet the condition. The ALL must be preceded by comparison operators and evaluates true if all of the subqueries values meet the condition.
+ALL is used with SELECT, WHERE, HAVING statement.
+ALL with SELECT Statement:
+
+Syntax:
+SELECT ALL field_name
+FROM table_name
+WHERE condition(s);
+
+Syntax:
+SELECT column_name(s)
+FROM table_name
+WHERE column_name comparison_operator ALL
+(SELECT column_name
+FROM table_name
+WHERE condition(s));
+
+Find the name of the product if all the records in the OrderDetails has Quantity either equal to 6 or 2.
+SELECT ProductName 
+FROM Products
+WHERE ProductID = ALL (SELECT ProductId
+                       FROM OrderDetails
+                       WHERE Quantity = 6 OR Quantity = 2);
+
+Find the OrderID whose maximum Quantity among all product of that OrderID is greater than average quantity of all OrderID.
+SELECT OrderID 
+FROM OrderDetails 
+GROUP BY OrderID 
+HAVING max(Quantity) > ALL (SELECT avg(Quantity) 
+                            FROM OrderDetails 
+                            GROUP BY OrderID);
+
+ANY compares a value to each value in a list or results from a query and evaluates to true if the result of an inner query contains at least one row.
+
+ANY return true if any of the subqueries values meet the condition.
+ANY must be preceded by comparison operators.
+Syntax:
+SELECT column_name(s)
+FROM table_name
+WHERE column_name comparison_operator ANY
+(SELECT column_name
+FROM table_name
+WHERE condition(s));

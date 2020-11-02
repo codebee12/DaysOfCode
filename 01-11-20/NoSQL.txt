@@ -1,0 +1,15 @@
+Types of NoSQL database:
+Types of NoSQL databases and the name of the databases system that falls in that category are:
+
+MongoDB falls in the category of NoSQL document based database.
+Key value store: Memcached, Redis, Coherence
+Tabular: Hbase, Big Table, Accumulo
+Document based: MongoDB, CouchDB, Cloudant
+
+When should NoSQL be used:
+
+When huge amount of data need to be stored and retrieved .
+The relationship between the data you store is not that important
+The data changing over time and is not structured.
+Support of Constraints and Joins is not required at database level
+The data is growing continuously and you need to scale the database regular to handle the data.

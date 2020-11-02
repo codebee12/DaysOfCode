@@ -1,0 +1,8 @@
+Wildcard operators are used with LIKE operator, there are four basic operators:
+
+Operator	Description
+%	It is used in substitute of zero or more characters.
+_	It is used in substitute of one character.
+_	It is used to substitute a range of characters.
+[range_of_characters]	It is used to fetch matching set or range of characters specified inside the brackets.
+[^range_of_characters] or [!range of characters]	It is used to fetch non-matching set or range of characters specified inside the brackets.

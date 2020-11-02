@@ -1,0 +1,23 @@
+The MERGE command in SQL is actually a combination of three SQL statements: INSERT, UPDATE and DELETE.
+
+But unlike INSERT, UPDATE and DELETE statements MERGE statement requires a source table to perform these operations on 
+the required table which is called as target table.
+
+//.....syntax of MERGE statement....//
+
+//you can use any other name in place of target
+MERGE target_table_name AS TARGET  
+
+//you can use any other name in place of source 
+USING source_table_name AS SOURCE   
+ON condition (for matching source and target table)
+WHEN MATCHED (another condition for updation)
+
+ //now use update statement syntax accordingly
+THEN UPDATE                       
+WHEN NOT MATCHED BY TARGET 
+
+//now use insert statement syntax accordingly
+THEN INSERT                        
+WHEN NOT MATCHED BY SOURCE 
+THEN DELETE;

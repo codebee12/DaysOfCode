@@ -1,0 +1,35 @@
+A role is created to ease setup and maintenance of the security model. It is a named group of related privileges that can be granted to the user. When there are many users in a database it becomes difficult to grant or revoke privileges to users. Therefore, if you define roles:
+
+You can grant or revoke privileges to users, thereby automatically granting or revoking privileges.
+You can either create Roles or use the system roles pre-defined.
+
+Creating and Assigning a Role –
+
+First, the (Database Administrator)DBA must create the role. Then the DBA can assign privileges to the role and users to the role.
+
+Syntax –
+CREATE ROLE manager;
+Role created.
+In the syntax:
+‘manager’ is the name of the role to be created.
+
+Now that the role is created, the DBA can use the GRANT statement to assign users to the role as well as assign privileges to the role.
+It’s easier to GRANT or REVOKE privileges to the users through a role rather than assigning a privilege directly to every user.
+If a role is identified by a password, then GRANT or REVOKE privileges have to be identified by the password.
+Grant privileges to a role –
+
+GRANT create table, create view
+TO manager;
+Grant succeeded.
+Grant a role to users
+
+GRANT manager TO SAM, STARK;
+Grant succeeded.
+Revoke privilege from a Role :
+
+REVOKE create table FROM manager;
+Drop a Role :
+
+DROP ROLE manager;
+Explanation –
+Firstly it creates a manager role and then allows managers to create tables and views. It then grants Sam and Stark the role of managers. Now Sam and Stark can create tables and views. If users have multiple roles granted to them, they receive all of the privileges associated with all of the roles. Then create table privilege is removed from role ‘manager’ using Revoke.The role is dropped from the database using drop.

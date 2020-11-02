@@ -1,0 +1,47 @@
+Structured Query Language is a standard Database language which is used to create, maintain and retrieve the relational database
+
+What is Relational Database?
+Relational database means the data is stored as well as retrieved in the form of relations (tables).
+
+These are some important terminologies that are used in terms of relation.
+Attribute: Attributes are the properties that define a relation. e.g.; ROLL_NO, NAME etc.
+Tuple: Each row in the relation is known as tuple.
+Degree: The number of attributes in the relation is known as degree of the relation.
+Cardinality: The number of tuples in a relation is known as cardinality. 
+Column: Column represents the set of values for a particular attribute.
+
+Example:
+Table: STUDENT
+Attributes: ROLL_NO, NAME, ADDRESS, PHONE,	AGE
+
+The queries to deal with relational database can be categories as:
+Data Definition Language: It is used to define the structure of the database. e.g; CREATE TABLE, ADD COLUMN, DROP COLUMN and so on.
+Data Manipulation Language: It is used to manipulate data in the relations. e.g.; INSERT, DELETE, UPDATE and so on.
+Data Query Language: It is used to extract the data from the relations. e.g.; SELECT
+
+AGGRATION FUNCTIONS: Aggregation functions are used to perform mathematical operations on data values of a relation. 
+Some of the common aggregation functions used in SQL are:
+
+COUNT: Count function is used to count the number of rows in a relation. e.g;
+SELECT COUNT (PHONE) FROM STUDENT;
+
+SUM: SUM function is used to add the values of an attribute in a relation. e.g;
+SELECT SUM (AGE) FROM STUDENT;
+
+AVERAGE: It gives the average values of the tupples. It is also defined as sum divided by count values.
+Syntax:AVG(attributename)
+OR
+Syntax:SUM(attributename)/COUNT(attributename)
+The above mentioned syntax also retrieves the average value of tupples.
+
+MAXIMUM:It extracts the maximum value among the set of tupples.
+Syntax:MAX(attributename)
+
+MINIMUM:It extracts the minimum value amongst the set of all the tupples.
+Syntax:MIN(attributename)
+
+GROUP BY: Group by is used to group the tuples of a relation based on an attribute or group of attribute. It is always combined with aggregation function which is computed on group. e.g.;
+
+SELECT ADDRESS, SUM(AGE) FROM STUDENT
+GROUP BY (ADDRESS);
+In this query, SUM(AGE) will be computed but not for entire table but for each address. i.e.; sum of AGE for address DELHI(18+18=36) and similarly for other address as well.

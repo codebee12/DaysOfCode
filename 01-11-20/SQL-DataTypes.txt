@@ -1,0 +1,3 @@
+Reference: https://www.geeksforgeeks.org/sql-datatypes/?ref=lbp
+
+ACID - atomic, consistent, isolated and durable

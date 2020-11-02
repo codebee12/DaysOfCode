@@ -1,0 +1,27 @@
+The OFFSET argument is used to identify the starting point to return rows from a result set. Basically, it exclude the first set of records.
+Note:
+
+OFFSET can only be used with ORDER BY clause. It cannot be used on its own.
+OFFSET value must be greater than or equal to zero. It cannot be negative, else return error.
+Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+ORDER BY column_name
+OFFSET rows_to_skip ROWS;
+
+The FETCH argument is used to return a set of number of rows. FETCH can’t be used itself, it is used in conjuction with OFFSET.
+Syntax:
+
+SELECT column_name(s)
+FROM table_name
+ORDER BY column_name
+OFFSET rows_to_skip
+FETCH NEXT number_of_rows ROWS ONLY;
+
+The LIMIT clause is used to set an upper limit on the number of tuples returned by SQL.
+Example:
+SELECT *
+FROM Student
+LIMIT 5;    
