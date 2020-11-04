@@ -1,0 +1,38 @@
+Reference: https://www.nginx.com/blog/microservices-reference-architecture-nginx-twelve-factor-app/
+
+1 - Codebase
+One codebase per service, tracked in revision control; many deploys
+
+2 – Dependencies
+Explicitly declare and isolate dependencies
+
+3 – Config
+Store configuration in the environment
+
+4 – Backing Services
+Treat backing services as attached resources
+
+5 – Build, Release, Run
+Strictly separate build and run stages
+
+6 – Processes
+Execute the app in one or more stateless processes
+
+7 – Data Isolation
+Each service manages its own data
+
+8 – Concurrency
+Scale out via the process model
+
+9 – Disposability
+Maximize robustness with fast startup and graceful shutdown
+
+10 – Dev/Prod Parity
+Keep development, staging, and production as similar as possible
+
+11 – Logs
+Treat logs as event streams
+
+12 – Admin Processes
+Run admin and management tasks as one‑off processes
+In a production environment, run administrative and maintenance tasks separately from the app

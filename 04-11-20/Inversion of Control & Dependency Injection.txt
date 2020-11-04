@@ -1,0 +1,9 @@
+Inversion of Control & Dependency Injection
+
+Reference: https://stackoverflow.com/questions/3058/what-is-inversion-of-control
+
+Example of DI:
+Without IoC: You have a laptop computer and you accidentally break the screen. And darn, you find the same model laptop screen is nowhere in the market. So you're stuck.
+
+With IoC: You have a desktop computer and you accidentally break the screen. You find you can just grab almost any desktop monitor from the market, and it works well with your desktop.
+
