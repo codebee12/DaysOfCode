@@ -1,0 +1,4 @@
+Abstract Factory
+Ref: https://github.com/oobarbazanoo/Alexander-Shvets-Design-Patterns-Explained-Simply.pdf/blob/master/Alexander%20Shvets%20Design%20Patterns%20Explained%20Simply.pdf
+
+Dive into Design Patterns by RefactoringGuru- Alexander Sheets
