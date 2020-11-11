@@ -1,0 +1,2 @@
+Ref: https://www.javatpoint.com/java-multithreading-interview-questions
+https://www.geeksforgeeks.org/inter-thread-communication-java/
