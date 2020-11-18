@@ -1,0 +1,36 @@
+LC:1413.
+Minimum Value to Get Positive Step by Step Sum
+Easy
+
+Given an array of integers nums, you start with an initial positive value startValue.
+
+In each iteration, you calculate the step by step sum of startValue plus elements in nums (from left to right).
+
+Return the minimum positive value of startValue such that the step by step sum is never less than 1.
+
+Solution:
+
+class Solution {
+    public int minStartValue(int[] nums) {
+        int sum = 0;
+        int x = 0;
+        boolean flag = false;
+        for ( int i =0; i< nums.length; i++)
+        {
+            sum += nums[i];
+            if(sum <1)
+            {
+                x= x+ Math.abs(sum)+1;
+                sum = 1;
+                flag=true;
+            }                       
+        }
+        if(flag)
+            return x;
+        else
+            return 1; 
+        }
+}
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Minimum Value to Get Positive Step by Step Sum.
+Memory Usage: 36.6 MB, less than 26.45% of Java online submissions for Minimum Value to Get Positive Step by Step Sum.
