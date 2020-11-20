@@ -1,0 +1,75 @@
+LC: 483 
+Finding all Anagrams of a String
+
+Given a string s and a non-empty string p, find all the start indices of p's anagrams in s.
+
+Strings consists of lowercase English letters only and the length of both strings s and p will not be larger than 20,100.
+
+The order of output does not matter.
+
+Not so optimal solution:
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        
+        List<Integer> list = new ArrayList<Integer>();
+      
+        for(int i =0; i< (s.length()-p.length())+1; i++)
+        {
+            
+            String temp = s.substring(i,i+p.length());
+          //  System.out.println("Extracted substring "+temp);
+            char arr[] = temp.toCharArray();
+            Arrays.sort(arr);
+            String st = String.valueOf(arr);
+         //   System.out.println("Sorted substring  "+st);
+            char arrP[] = p.toCharArray();
+            Arrays.sort(arrP);
+            String t = String.valueOf(arrP);
+         //   System.out.println("Sorted substring p "+t);
+            if(st.equalsIgnoreCase(t))
+                list.add(i);
+        }
+        return list;
+    }
+}
+
+Solution 2:
+Time complexity - O(p*(s-p))
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        
+        List<Integer> list = new ArrayList<Integer>();
+        HashMap<Character,Integer> pMap = new HashMap<Character,Integer>();
+        for(int i = 0; i< p.length();i++)
+            {
+                char ch = p.charAt(i);
+                if(pMap.containsKey(ch))
+                    pMap.put(ch,pMap.get(ch)+1);
+                else
+                    pMap.put(ch,1);
+            }
+        for(int i =0; i< (s.length()-p.length())+1; i++)
+        {
+            
+            String temp = s.substring(i,i+p.length());
+            HashMap<Character,Integer> tempMap = new HashMap<Character,Integer>();
+          //  System.out.println("Extracted substring "+temp);
+            for(int j = 0; j< temp.length();j++)
+            {
+                char ch = temp.charAt(j);
+                if(tempMap.containsKey(ch))
+                    tempMap.put(ch,tempMap.get(ch)+1);
+                else
+                    tempMap.put(ch,1);
+            }         
+         //   System.out.println("Sorted substring p "+t);
+            if(tempMap.equals(pMap))
+                list.add(i);
+        }
+        return list;
+    }
+}
+
+Liner Time Solution:
+https://medium.com/@yzhua3/leetcode-find-all-anagrams-in-a-string-b535d8ad6022
